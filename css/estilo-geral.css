@@ -1,0 +1,76 @@
+﻿@font-face { font-family: openSansLight; src: url('../fonts/OpenSans-Light.ttf'); }
+@font-face { font-family: openSansRegular; src: url('../fonts/OpenSans-Regular.ttf'); }
+@font-face { font-family: openSansItalic; src: url('../fonts/OpenSans-Italic.ttf'); }
+@font-face { font-family: openSansBold; src: url('../fonts/OpenSans-Bold.ttf'); }
+
+/* DEFINIÇÕES GERAIS */
+* {font-family: openSansRegular;}
+h2 { font-family: openSansLight; font-size:24px; color:#3fcdc4;  }
+hr { margin: 15px 0; border-color: #ccc; }
+button,
+input,
+a,
+button:focus,
+input:focus,
+a:focus { outline: 0 !important; }
+textarea { resize: none; }
+
+.logo { padding: 15px; }
+
+/* CLASSES PADRÃO */
+.padding-std-top { padding-top: 15px; }
+.padding-std-right { padding-right: 15px; }
+.padding-std-bottom { padding-bottom: 15px; }
+.padding-std-left { padding-left: 15px; }
+
+.margin-std-top { margin-top: 15px; }
+.margin-std-right { margin-right: 15px; }
+.margin-std-bottom { margin-bottom: 15px; }
+.margin-std-left { margin-left: 15px; }
+
+/* DIVS CONTAINER */
+.content { min-height: 970px; margin-bottom: 30px; }
+
+/* FORMULÁRIOS */
+.input-qtde { width: 70px; height: 24px; padding: 2px 6px  }
+input.error ,
+input.error:focus { border: 1px solid #a94442; box-shadow: none; }
+span.error { margin-left: 10px; font-size: 10px; font-style: italic; color: #a94442; }
+
+/* MODAIS */
+.modal h4 { font-family: openSansLight; font-size:18px; color:#3fcdc4; }
+.modal tr { cursor: pointer; }
+.modal .active-tr,
+.modal tr:hover { background-color: #27a199; color:#fff; }
+
+/* TABELAS */
+.tabela-overflow { width: 100%; overflow: auto; }
+
+/* BOTÕES */
+.btn-pequeno { padding: 2px 9px; font-size: 12px; }
+.btn-vermelho { background-color: #e54147; color:#fff; }
+.btn-vermelho:hover,
+.btn-vermelho:focus { background-color:#e77f83; color:#fff;}
+.btn-mais,
+.btn-salvar { background-color: #27a199; font-size:14px; color: #fff; }
+.btn-mais:hover,
+.btn-mais:focus,
+.btn-salvar:hover,
+.btn-salvar:focus { background-color: #46efe4; color:#fff; }
+ 
+/* ALTERAÇÕES NO BOOTSTRAP */
+.nav > li > a { padding: 15px 10px; }
+.navbar-toggle { border-color: #ddd; }
+.navbar-toggle .icon-bar { background: #27a199; }
+.modal-header .close { top: 5px; right: 10px; position: absolute; }
+
+/* ALTERAÇÕES NO FONT AWESOME */
+/*.fa-fw { margin-right: 3px; }*/
+
+/* RODAPÉ */
+.rodape { padding: 15px 0; background-color:#f8f8f8; border-top: 1px solid #e7e7e7; }
+.rodape p { font-family: openSansBold; font-size: 12px; color: #666; }
+
+@media screen and (min-width: 783px){
+    .logo { padding-left: 0; }
+}
