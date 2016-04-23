@@ -48,7 +48,7 @@ function apenasNumeros(e) {
     if ((tecla > 47 && tecla < 58)) { // numeros de 0 a 9
         return true;
     } else {
-        if (tecla != 8 && tecla != 9) { // backspace   e // tab
+        if (tecla != 8 && tecla != 9 && tecla != 44) { // backspace   e // tab
             return false;
         } else {
             return true;
