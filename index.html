@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/estilo-geral.css" type="text/css" />    
     
     <style>
-        /*input[type="date"] { -webkit-appearance: none; }*/
+        input[type="date"] { -webkit-appearance: none; padding: 6px 12px; }
     </style>
    
 </head>
@@ -509,7 +509,7 @@
                 } else {
                     $('.no-itens td').css('color', '#27a199');
                 }
-            }       
+            }
 
             /* Delega o evento blur (perder foco) ao adicionar itens do pedido */
             $('body').delegate('.input-qtde','blur', function () {
@@ -539,6 +539,8 @@
                 if ($('.tabela-itens-pedido tbody tr').length <= 1) {
                     $('.tabela-itens-pedido .no-itens').show();
                 }
+
+                $('.valor-total-pedido').text(somaValoresTotais($('.tabela-itens-pedido')));
             });
             
             /* Delega o evento blur (perder foco) ao adicionar itens do pedido */
