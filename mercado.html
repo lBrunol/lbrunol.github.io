@@ -8,11 +8,10 @@
 <body>
     <h1>Teste de Acesso Mercado Livre</h1>
     <script src="js/jquery-2.2.3.min.js"></script>
-    <script src="js/mercadolibre.js"></script>
+    <!--<script src="js/mercadolibre.js"></script>-->
     <script>
         $.ajax({
             url: 'https://api.mercadolibre.com/sites/CoolCute/search?nickname=BAAL2970553',
-            method: GET,
             data: function( data ){
                 console.log(data);
             }
