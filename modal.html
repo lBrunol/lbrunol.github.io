@@ -1,0 +1,288 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>Animação</title>
+	<script type="text/javascript">
+
+		if (!Array.isArray) {
+			Array.isArray = function(arg) {
+				return Object.prototype.toString.call(arg) === '[object Array]';
+			};
+		}
+
+		var support = {};
+		
+
+		function getElements(el) {
+			return document.querySelectorAll(el);
+		}
+
+		function getFirstElement(el) {
+			return document.querySelectorAll(el)[0];				
+		}
+
+		
+		String.prototype.replaceAll = function (oldChar, newChar){
+			var teste;
+			for(i = 0; i < this.length; i++)
+				this[i].replace(oldChar,newChar);
+			teste = this.toString();
+			return teste;
+		}
+
+		window.onload = function() {
+
+			~function addClass(el, classe) {
+				var currentClass;
+				var char;
+
+				var elements = getElements(el);
+
+				for ( i = 0; i < elements.length; i++ ) {
+					if ( elements[i].className == 'undefined' ) {
+						elements[i].setAttribute('class', classe);
+					} else {
+						currentClass = elements[i].className.split(' ');
+						currentClass.push(classe);
+						if ( currentClass.length > 1 && currentClass[0] === '' )
+							char = '';
+						else
+							char = ' ';
+						elements[i].className = currentClass.toString().replace(/,/g, char);
+					}
+				}
+			}('.pai > div', 'cool');
+
+			~function removeClass(el, classe){
+
+				var currentClass;
+				var char;
+
+				var elements = getElements(el);
+
+				for ( i = 0; i < elements.length; i++ ) {
+					if ( elements[i].className == 'undefined' ) {
+						return false;
+					} else if ( elements[i].className === classe ) {
+						elements[i].removeAttribute('class');
+					} else {
+						currentClass = elements[i].className.split(' ');
+
+						classe.split(' ');
+
+						if ( Array.isArray(classe) )
+							for ( i = 0; i < classe.length; i++ )
+								currentClass.splice(currentClass.indexOf(classe[i]), 1);
+						else
+							currentClass.splice(currentClass.indexOf(classe), 1);
+
+						if ( currentClass.length > 1 && currentClass[0] === '' )
+							char = '';
+						else
+							char = ' ';
+						elements[i].className = currentClass.toString().replace(/,/g, char);
+					}
+				}
+			}('.pai > div', 'ola');
+			
+			var domPrefixes = 'Webkit Moz O ms Khtml'.split(' '),
+		      	elm = document.getElementsByTagName('body')[0];
+		      	animation = false,
+		      	transformation = false;
+
+			if ( document.addEventListener ) { support.eventListener = true; }
+			if ( elm.style.animationName ) { support.animation = true; }
+
+			if( animation === false ) {
+			    for( var i = 0; i < domPrefixes.length; i++ ) {
+		      		if( elm.style[ domPrefixes[i] + 'AnimationName' ] !== undefined ) {
+			        	support.animation = true;
+		        		break;
+		      		}
+			    }
+		  	}
+
+			if ( support.eventListener ){
+				getFirstElement('.btn-modal').addEventListener('click', openModal);
+				getFirstElement('.modal').addEventListener('click', function(){ closeModal(); });
+			} else {
+				getFirstElement('.btn-modal').attachEvent('onclick', openModal);
+				getFirstElement('.modal').attachEvent('onclick', function(){ closeModal(); });
+			}
+
+		};
+		
+		function openOverlay(){
+			getFirstElement('.overlay').style.display = 'block';
+			getFirstElement('.overlay').className = 'overlay open-overlay';
+		}
+		
+		function closeOverlay(){
+			
+			getFirstElement('.overlay').className = 'overlay close-overlay';
+			
+			if( support.animation ) {
+				setTimeout(
+					function (){ 
+						getFirstElement('.overlay').style.display = 'none';
+					}, 
+					600
+				);
+			} else {
+				getFirstElement('.overlay').style.display = 'none';
+			}
+		}
+		
+		function openModal(){
+			
+			openOverlay();
+			var modal;
+			modal = getFirstElement('.modal');
+			modal.style.display = 'block';			
+			modal.className = 'modal open';
+		}
+		function closeModal(){
+			closeOverlay();
+			var modal;			
+			modal = getFirstElement('.modal');
+			modal.className = 'modal close';
+			if( support.animation ) {
+				setTimeout(
+					function (){ 
+						getFirstElement('.modal').style.display = 'none';
+					}, 
+					600
+				);
+			} else {
+				getFirstElement('.modal').style.display = 'none';
+			}
+		}
+	</script>
+	<style type="text/css">
+		body { margin: 0; padding: 0; }
+		.modal {
+			display: none;
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			z-index: 20;
+		}
+		
+		.modal-content {
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			position: absolute;
+			background: #19768c; 
+			width: 500px; 
+			height: 200px;
+			margin: auto;
+
+			animation: fadeInTop 0.5s forwards;
+			padding: 20px;
+		}
+		
+		.overlay {
+			position: fixed;
+			width: 100%;
+			height: 100%;
+			z-index: 10;
+			background: #000;
+			display: none;
+			opacity: 0.5;
+			filter: alpha(opacity=50);
+		}
+		
+		p { color: #fff; font-family: tahoma; }
+		
+		.open { 
+			animation: fadeInTop 0.3s forwards;
+		}
+		.close { 
+			animation: fadeOutTop 0.3s forwards;
+		}
+		
+		.open-overlay {
+			animation: fadeInOverlay .2s forwards;
+		}
+		
+		.close-overlay {
+			animation: fadeOutOverlay .6s forwards;
+		}
+		
+		@keyframes fadeInOverlay {
+			0%{
+				opacity: 0;
+			}
+			50% {
+				opacity: 0.5;
+				filter: alpha(opacity=50);
+			}
+			100% {
+				opacity: 0.5;
+				filter: alpha(opacity=50);
+			}
+		}
+		
+		@keyframes fadeOutOverlay {
+			0%{
+				opacity: 0.5;
+				filter: alpha(opacity=50);
+			}
+			100% {
+				opacity: 0;
+				filter: alpha(opacity=0);
+			}
+		}
+		
+		@keyframes fadeOutTop {
+			0% {
+  				transform: scale(1);
+
+			}
+			50% {
+
+				transform: scale(1);
+				opacity: 1;
+				filter: alpha(opacity=100);
+			}
+		 	100% {
+  				transform: scale(.6);
+  				opacity: 0;
+  				filter: alpha(opacity=0);
+			}
+		}
+		@keyframes fadeInTop {
+			0% {
+  				transform: scale(.6);
+  				opacity: 0;
+  				filter: alpha(opacity=0);
+			}			
+		 	100% {
+  				transform: scale(1);
+  				opacity: 1;
+  				filter: alpha(opacity=100);
+
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="modal">
+		<div class="modal-content">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat quod fuga quasi aliquam! Dolorum magnam expedita reiciendis laboriosam delectus tempora. Quibusdam cumque magnam non laborum animi sunt officia eius doloremque.</p>
+		</div>		
+	</div>
+	<div class="overlay"></div>
+	<div class="pai">
+		<div id="teste"></div>
+		<div id="teste" class="ola div2"></div>
+		<div id="teste" class="ola div4 col-md-12"></div>
+		<div id="teste" class="sistema"></div>
+		<div id="teste"></div>
+	</div>
+
+	<input type="button" class="btn-modal" value="Abrir" />
+</body>
+</html>
